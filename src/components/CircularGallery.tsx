@@ -19,6 +19,10 @@ interface CircularGalleryProps {
   fontUrl?: string;
   scrollSpeed?: number;
   scrollEase?: number;
+  /** Auto-rotate speed (units per frame). 0 = off. Pauses while the user interacts. */
+  autoScroll?: number;
+  /** Ms of inactivity before auto-rotation resumes after an interaction. */
+  autoResumeDelay?: number;
 }
 
 function debounce(func: (...a: any[]) => void, wait: number) {
@@ -326,11 +330,14 @@ class App {
   onCheckDebounce: any; renderer: any; gl: any; camera: any; scene: any;
   planeGeometry: any; medias: Media[] = []; mediasImages: any[] = [];
   screen: any; viewport: any; raf = 0; isDown = false; start = 0;
+  autoScroll = 0; autoResumeDelay = 2000; autoPaused = false; resumeTimer: any = null;
   boundOnResize: any; boundOnWheel: any; boundOnTouchDown: any; boundOnTouchMove: any; boundOnTouchUp: any; boundOnKeyDown: any;
-  constructor(container: HTMLElement, { items, bend, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px Figtree', scrollSpeed = 2, scrollEase = 0.05 }: any = {}) {
+  constructor(container: HTMLElement, { items, bend, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px Figtree', scrollSpeed = 2, scrollEase = 0.05, autoScroll = 0, autoResumeDelay = 2000 }: any = {}) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
+    this.autoScroll = autoScroll;
+    this.autoResumeDelay = autoResumeDelay;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck, 200);
     this.createRenderer(); this.createCamera(); this.createScene(); this.onResize();
@@ -355,15 +362,21 @@ class App {
       screen: this.screen, text: data.text, viewport: this.viewport, bend, textColor, borderRadius, font
     }));
   }
-  onTouchDown(e: any) { this.isDown = true; this.scroll.position = this.scroll.current; this.start = e.touches ? e.touches[0].clientX : e.clientX; }
-  onTouchMove(e: any) { if (!this.isDown) return; const x = e.touches ? e.touches[0].clientX : e.clientX; const distance = (this.start - x) * (this.scrollSpeed * 0.025); this.scroll.target = this.scroll.position + distance; }
-  onTouchUp() { this.isDown = false; this.onCheck(); }
-  onWheel(e: any) { const delta = e.deltaY || e.wheelDelta || e.detail; this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2; this.onCheckDebounce(); }
+  pauseAuto() {
+    if (!this.autoScroll) return;
+    this.autoPaused = true;
+    if (this.resumeTimer) clearTimeout(this.resumeTimer);
+    this.resumeTimer = setTimeout(() => { this.autoPaused = false; }, this.autoResumeDelay);
+  }
+  onTouchDown(e: any) { this.pauseAuto(); this.isDown = true; this.scroll.position = this.scroll.current; this.start = e.touches ? e.touches[0].clientX : e.clientX; }
+  onTouchMove(e: any) { if (!this.isDown) return; this.pauseAuto(); const x = e.touches ? e.touches[0].clientX : e.clientX; const distance = (this.start - x) * (this.scrollSpeed * 0.025); this.scroll.target = this.scroll.position + distance; }
+  onTouchUp() { this.isDown = false; this.pauseAuto(); this.onCheck(); }
+  onWheel(e: any) { this.pauseAuto(); const delta = e.deltaY || e.wheelDelta || e.detail; this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2; this.onCheckDebounce(); }
   onKeyDown(e: any) {
     switch (e.key) {
-      case 'ArrowRight': e.preventDefault(); this.scroll.target += this.scrollSpeed * 5; this.onCheckDebounce(); break;
-      case 'ArrowLeft': e.preventDefault(); this.scroll.target -= this.scrollSpeed * 5; this.onCheckDebounce(); break;
-      case 'Home': e.preventDefault(); this.scroll.target = 0; this.onCheckDebounce(); break;
+      case 'ArrowRight': e.preventDefault(); this.pauseAuto(); this.scroll.target += this.scrollSpeed * 5; this.onCheckDebounce(); break;
+      case 'ArrowLeft': e.preventDefault(); this.pauseAuto(); this.scroll.target -= this.scrollSpeed * 5; this.onCheckDebounce(); break;
+      case 'Home': e.preventDefault(); this.pauseAuto(); this.scroll.target = 0; this.onCheckDebounce(); break;
       default: break;
     }
   }
@@ -385,6 +398,10 @@ class App {
     if (this.medias) this.medias.forEach(media => media.onResize({ screen: this.screen, viewport: this.viewport }));
   }
   update() {
+    // Auto-rotate: gently advance the target unless the user is interacting.
+    if (this.autoScroll && !this.autoPaused && !this.isDown) {
+      this.scroll.target += this.autoScroll;
+    }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) this.medias.forEach(media => media.update(this.scroll, direction));
@@ -412,6 +429,7 @@ class App {
   }
   destroy() {
     window.cancelAnimationFrame(this.raf);
+    if (this.resumeTimer) clearTimeout(this.resumeTimer);
     window.removeEventListener('resize', this.boundOnResize);
     window.removeEventListener('mousewheel', this.boundOnWheel);
     window.removeEventListener('wheel', this.boundOnWheel);
@@ -436,7 +454,9 @@ export default function CircularGallery({
   font = 'bold 30px Figtree',
   fontUrl,
   scrollSpeed = 2,
-  scrollEase = 0.05
+  scrollEase = 0.05,
+  autoScroll = 0,
+  autoResumeDelay = 2000
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -445,10 +465,10 @@ export default function CircularGallery({
     let isMounted = true;
     resolveFont(font, fontUrl).then(resolvedFont => {
       if (!isMounted || !containerRef.current) return;
-      app = new App(containerRef.current, { items, bend, textColor, borderRadius, font: resolvedFont, scrollSpeed, scrollEase });
+      app = new App(containerRef.current, { items, bend, textColor, borderRadius, font: resolvedFont, scrollSpeed, scrollEase, autoScroll, autoResumeDelay });
     });
     return () => { isMounted = false; if (app) app.destroy(); };
-  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase]);
+  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, autoScroll, autoResumeDelay]);
   return (
     <div
       className="circular-gallery"
