@@ -28,6 +28,8 @@ export const hero = {
   imageAlt: 'A woman holding a lotus, wearing a kundan necklace and pearl earrings',
   video: 'videos/hero-mobile.mp4',
   videoPoster: 'videos/hero-mobile-poster.jpg',
+  videoDesktop: 'videos/hero-desktop.mp4',
+  videoDesktopPoster: 'videos/hero-desktop-poster.jpg',
   scrollCue: 'Scroll to begin',
 };
 

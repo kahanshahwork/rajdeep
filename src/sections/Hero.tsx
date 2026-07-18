@@ -30,12 +30,22 @@ export default function Hero() {
       </div>
 
       <div className="hero__media reveal reveal-d2">
-        <div className="framed framed--arch parallax" data-parallax="-0.06" style={{ aspectRatio: '4 / 5' }}>
-          {/* Desktop: portrait photograph */}
-          <img className="hero__img" src={hero.image} alt={hero.imageAlt} loading="eager" />
-          {/* Mobile: looping video (autoplay, muted, inline) */}
+        <div className="framed framed--arch parallax" data-parallax="-0.06" style={{ aspectRatio: '3 / 4' }}>
+          {/* Desktop: landscape video */}
           <video
-            className="hero__video"
+            className="hero__video hero__video--desktop"
+            src={hero.videoDesktop}
+            poster={hero.videoDesktopPoster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={hero.imageAlt}
+          />
+          {/* Mobile: portrait video */}
+          <video
+            className="hero__video hero__video--mobile"
             src={hero.video}
             poster={hero.videoPoster}
             autoPlay
