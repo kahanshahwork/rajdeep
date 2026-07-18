@@ -81,6 +81,10 @@
 .framed--arch { border-top-left-radius: 50% 24%; border-top-right-radius: 50% 24%; }
 .parallax { will-change: transform; }
 
+/* Hero media: photo on desktop, looping video on mobile */
+.hero__img { display: block; }
+.hero__video { display: none; width: 100%; height: 100%; object-fit: cover; }
+
 /* HERO */
 .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1.02fr 0.98fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: 8rem var(--page-x) 4rem; overflow: hidden; }
 .hero__aura { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(60% 50% at 78% 42%, rgba(195, 154, 85, 0.28), transparent 70%), radial-gradient(50% 60% at 12% 80%, rgba(138, 75, 47, 0.12), transparent 70%); }
@@ -211,6 +215,8 @@
     margin: 0 auto;
   }
   .hero__media .framed { aspect-ratio: 3 / 4 !important; height: auto !important; }
+  .hero__img { display: none; }
+  .hero__video { display: block; }
   /* the royal brand block */
   .hero__brand {
     order: 2;

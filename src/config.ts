@@ -26,6 +26,8 @@ export const hero = {
     'For over thirty years, we have made jewellery slowly — by hand, in gold, meant to be worn at weddings and then passed down like a story told again and again.',
   image: 'images/portrait-lotus-necklace.jpg',
   imageAlt: 'A woman holding a lotus, wearing a kundan necklace and pearl earrings',
+  video: 'videos/hero-mobile.mp4',
+  videoPoster: 'videos/hero-mobile-poster.jpg',
   scrollCue: 'Scroll to begin',
 };
 
