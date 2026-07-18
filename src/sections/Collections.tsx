@@ -1,20 +1,7 @@
-import { useEffect, useState } from 'react';
 import CircularGallery from '../components/CircularGallery';
 import { collections } from '../config';
 
 export default function Collections() {
-  // Auto-rotate on mobile only; pauses when the user touches the gallery.
-  const [autoScroll, setAutoScroll] = useState(0);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 640px)');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const apply = () => setAutoScroll(mq.matches && !reduce ? 0.28 : 0);
-    apply();
-    mq.addEventListener('change', apply);
-    return () => mq.removeEventListener('change', apply);
-  }, []);
-
   return (
     <section className="collections" id="collections">
       <div className="collections__head">
@@ -42,8 +29,6 @@ export default function Collections() {
           borderRadius={0.06}
           scrollEase={0.03}
           scrollSpeed={2}
-          autoScroll={autoScroll}
-          autoResumeDelay={2500}
           font="500 28px 'Cormorant Garamond', Georgia, serif"
         />
       </div>
