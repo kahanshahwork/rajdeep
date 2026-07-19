@@ -81,16 +81,14 @@
 .framed--arch { border-top-left-radius: 50% 24%; border-top-right-radius: 50% 24%; }
 
 /* ============================================================
-   PISHTAQ — Indian rectangular archway façade (SVG-driven)
-   video sits behind, revealed through a true pointed arch;
-   frame + spandrels + arch outline drawn as an SVG overlay
+   PISHTAQ — simple single-line arch outline over the video
    ============================================================ */
 .pishtaq {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
   will-change: transform;
-  filter: drop-shadow(0 26px 60px rgba(58, 42, 30, 0.3));
+  box-shadow: 0 26px 60px rgba(58, 42, 30, 0.18);
 }
 .pishtaq__media {
   position: absolute;
