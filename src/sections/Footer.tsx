@@ -47,7 +47,7 @@ export default function Footer() {
         style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', fontSize: '12px', letterSpacing: '0.1em', opacity: 0.6, textTransform: 'uppercase' }}
       >
         <span>{footer.copyright}</span>
-        <span>{visit.contact.phone}</span>
+        <span>{visit.contact.phoneDisplay}</span>
       </div>
     </footer>
   );

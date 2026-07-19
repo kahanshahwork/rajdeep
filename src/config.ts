@@ -6,7 +6,7 @@ export const brand = {
   name: 'RAJDEEP',
   full: 'Rajdeep Jewellers',
   tagline: 'Stories you can wear',
-  established: 'Est. 1992 · Mumbai',
+  established: 'Kalol · Gujarat',
 };
 
 export const nav = [
@@ -161,27 +161,71 @@ export const visit = {
   eyebrow: 'Visit',
   title: 'Come sit with us',
   copy:
-    'Every Rajdeep piece begins as a conversation. Book a private appointment at the atelier, and we’ll walk you through motifs, stones, and the story you want to carry.',
+    'Every Rajdeep piece begins as a conversation. Visit our showroom in Kalol, and Manojbhai and the team will walk you through motifs, stones, and the story you want to carry.',
   image: 'images/hero-lotus.jpg',
   alt: 'A gold kundan ring worn with an antique bangle on a red saree',
-  studios: [
-    { city: 'Mumbai', role: 'Flagship Atelier', address: 'Kala Ghoda, Fort' },
-    { city: 'Delhi', role: 'Studio', address: 'Sundar Nagar' },
-    { city: 'Bangalore', role: 'Gallery', address: 'Vittal Mallya Road' },
-  ],
-  contact: {
-    phone: '+91 22 4000 1992',
-    email: 'atelier@rajdeepjewellers.in',
-    hours: 'Tue – Sun · 11am – 7pm',
+
+  // Real showroom — Kalol, Gujarat
+  store: {
+    name: 'Rajdeep Jewellers',
+    line1: '18, Shree Vaibhav Complex',
+    line2: 'Khuni Bunglow Cross Road, Near GPO',
+    city: 'Kalol, Gandhinagar, Gujarat 382721',
+    phoneDisplay: '084889 95355',
+    phoneDial: '+918488995355',
+    hours: 'Mon – Sat · 10am – 8pm',
+    mapsLink: 'https://www.google.com/maps/search/?api=1&query=Rajdeep+Jewellers+Shree+Vaibhav+Complex+Kalol+382721',
+    directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=Rajdeep+Jewellers+Shree+Vaibhav+Complex+Khuni+Bunglow+Cross+Road+Kalol+382721',
+    // key-less embed of the address
+    mapEmbed: 'https://maps.google.com/maps?q=Rajdeep%20Jewellers%20Shree%20Vaibhav%20Complex%20Khuni%20Bunglow%20Cross%20Road%20Kalol%20382721&t=&z=16&ie=UTF8&iwloc=&output=embed',
   },
-  cta: 'Request an appointment',
+
+  contact: {
+    phoneDisplay: '084889 95355',
+    phoneDial: '+918488995355',
+    hours: 'Mon – Sat · 10am – 8pm',
+  },
+  cta: 'Call the showroom',
+};
+
+export interface Review {
+  quote: string;
+  name: string;
+  meta: string;
+}
+
+export const reviews = {
+  eyebrow: 'Kind Words',
+  title: 'What people love about us',
+  ratingValue: '4.3',
+  ratingCount: '78',
+  items: [
+    {
+      quote:
+        'Amazing experience, since 2006 till today — and looking forward to future shopping too. The most trustworthy and reliable shop for both gold and silver. Manojbhai and his staff are always pleasant and helpful in finding the latest patterns. I highly recommend this place.',
+      name: 'Bhoomi Mehta',
+      meta: 'Google Review',
+    },
+    {
+      quote:
+        'I really liked how trustworthy Rajdeep Jewellers is. They have the latest patterns, which are so pretty. I am very happy with my new jewellery.',
+      name: 'Kajal Raval',
+      meta: 'Google Review',
+    },
+    {
+      quote:
+        'You should definitely go to Rajdeep Jewellers. Their staff was so pleasant and very helpful — I loved my whole experience there.',
+      name: 'Vishwajit Pandey',
+      meta: 'Google Review',
+    },
+  ] as Review[],
 };
 
 export const footer = {
-  tagline: 'Stories you can wear, since 1992.',
+  tagline: 'Stories you can wear.',
   columns: [
     { heading: 'The House', links: ['Our Story', 'The Craft', 'Collections', 'Catalogue'] },
-    { heading: 'Visit', links: ['Mumbai Atelier', 'Delhi Studio', 'Bangalore Gallery', 'Book Appointment'] },
+    { heading: 'Visit', links: ['Kalol Showroom', 'Get Directions', 'Call Us', 'Reviews'] },
   ],
-  copyright: '© 2026 Rajdeep Jewellers · Mumbai',
+  copyright: '© 2026 Rajdeep Jewellers · Kalol, Gujarat',
 };

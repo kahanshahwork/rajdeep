@@ -153,10 +153,134 @@
 @keyframes flipPrev { 0% { transform: rotateY(0deg); opacity: 1; } 50% { transform: rotateY(12deg); opacity: 0.65; } 100% { transform: rotateY(0deg); opacity: 1; } }
 
 /* VISIT + FOOTER */
-.visit { position: relative; padding: clamp(5rem, 12vh, 9rem) var(--page-x); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; background: var(--ivory-deep); }
-.visit__media { aspect-ratio: 4 / 5; }
-.studios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
-.studio { border-top: 1px solid rgba(169, 128, 60, 0.3); padding-top: 1rem; }
+.visit {
+  position: relative;
+  padding: clamp(5rem, 12vh, 9rem) var(--page-x);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  background: var(--ivory-deep);
+}
+
+/* Store / address card */
+.storecard {
+  margin-top: 0.5rem;
+  padding: 1.75rem 1.75rem 1.9rem;
+  background: var(--ivory);
+  border: 1px solid rgba(169, 128, 60, 0.25);
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(58, 42, 30, 0.08);
+}
+.storecard__addr {
+  font-style: normal;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.storecard__rows { display: grid; gap: 0.75rem; margin-bottom: 1.75rem; }
+.storecard__row { display: flex; align-items: baseline; gap: 1rem; border-top: 1px solid rgba(169, 128, 60, 0.18); padding-top: 0.75rem; }
+.storecard__label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); min-width: 56px; }
+.storecard__value { color: var(--ink); font-size: 1.02rem; text-decoration: none; }
+a.storecard__value:hover { color: var(--clay); }
+.storecard__cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+
+/* Embedded map */
+.visit__map {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.visit__map iframe {
+  width: 100%;
+  height: min(60vh, 460px);
+  border: 1px solid rgba(169, 128, 60, 0.25);
+  border-radius: 4px;
+  filter: sepia(0.12) saturate(1.05);
+  box-shadow: 0 20px 60px rgba(58, 42, 30, 0.1);
+}
+.visit__maplink {
+  align-self: flex-end;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay);
+  text-decoration: none;
+}
+.visit__maplink:hover { color: var(--gold); }
+
+/* Reviews — full width under the two columns */
+.reviews { grid-column: 1 / -1; margin-top: clamp(3rem, 7vh, 5.5rem); }
+.reviews__head { text-align: center; margin-bottom: 2.75rem; }
+.reviews__rating { display: inline-flex; align-items: center; gap: 0.65rem; margin-top: 1rem; }
+.reviews__stars { color: var(--gold); letter-spacing: 0.12em; font-size: 1.05rem; }
+.reviews__ratingtext { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+/* Aurora review card */
+.reviewcard {
+  position: relative;
+  margin: 0;
+  border-radius: 8px;
+  isolation: isolate;
+}
+.reviewcard__aura {
+  position: absolute;
+  inset: -2px;
+  border-radius: 10px;
+  z-index: 0;
+  opacity: 0.5;
+  filter: blur(18px);
+  background: conic-gradient(from 0deg,
+    var(--gold-soft), var(--clay), var(--maroon), var(--gold), var(--gold-soft));
+  background-size: 200% 200%;
+  animation: auraShift 9s ease-in-out infinite;
+  transition: opacity 0.5s var(--ease);
+}
+.reviewcard:hover .reviewcard__aura { opacity: 0.9; }
+@keyframes auraShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.reviewcard__inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 2rem 1.75rem 1.75rem;
+  background: var(--ivory);
+  border: 1px solid rgba(169, 128, 60, 0.2);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+}
+.reviewcard__quotemark {
+  font-family: var(--serif);
+  font-size: 3rem;
+  line-height: 0.6;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+.reviewcard__quote {
+  margin: 0 0 1.5rem;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--ink);
+  font-style: italic;
+  flex: 1;
+}
+.reviewcard__cap { display: flex; flex-direction: column; gap: 0.2rem; border-top: 1px solid rgba(169, 128, 60, 0.2); padding-top: 1rem; }
+.reviewcard__name { font-family: var(--sans); font-weight: 400; color: var(--maroon); letter-spacing: 0.02em; }
+.reviewcard__meta { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 .foot { background: var(--maroon); color: var(--ivory); padding: clamp(3.5rem, 8vh, 6rem) var(--page-x) 2.5rem; }
 .foot__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; align-items: start; }
 .foot a, .foot button { color: var(--ivory); opacity: 0.72; text-decoration: none; background: none; border: 0; cursor: pointer; padding: 0; text-align: left; font-family: var(--sans); font-size: 0.95rem; transition: opacity 0.3s var(--ease); }
@@ -173,7 +297,7 @@
   .story__year { position: static; display: block; margin-top: 0.5rem; font-size: clamp(4rem, 18vw, 7rem); }
   .visit { grid-template-columns: 1fr; }
   .foot__grid { grid-template-columns: 1fr; gap: 2rem; }
-  .studios { grid-template-columns: repeat(3, 1fr); }
+  .reviews__grid { grid-template-columns: 1fr; }
   .craft__sticky { position: static; height: auto; display: block; }
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
   .craft__intro { flex: none; min-height: 50vh; padding-top: 5rem; padding-bottom: 3rem; }
@@ -263,10 +387,12 @@
 
   /* --- VISIT --- */
   .visit { padding-top: 4.5rem; padding-bottom: 5rem; gap: 2.25rem; }
-  .visit__media { max-width: 360px; margin: 0 auto; width: 100%; }
   .visit .display { font-size: clamp(2rem, 9vw, 2.8rem); }
-  .studios { grid-template-columns: 1fr; gap: 0; }
-  .studio { padding: 1rem 0; }
+  .storecard { padding: 1.4rem; }
+  .storecard__cta .btn { flex: 1; justify-content: center; }
+  .visit__map iframe { height: 320px; }
+  .reviews { margin-top: 3rem; }
+  .reviews__grid { grid-template-columns: 1fr; }
 
   /* --- FOOTER --- */
   .foot__grid { gap: 2.25rem; }
@@ -278,4 +404,5 @@
   .craft__sticky { position: static; height: auto; }
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
   .craft__intro, .craft__panel { flex: none; }
+  .reviewcard__aura { animation: none; }
 }
