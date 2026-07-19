@@ -80,32 +80,6 @@
 .framed img { width: 100%; height: 100%; object-fit: cover; }
 .framed--arch { border-top-left-radius: 50% 24%; border-top-right-radius: 50% 24%; }
 
-/* ============================================================
-   PISHTAQ — simple single-line arch outline over the video
-   ============================================================ */
-.pishtaq {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  will-change: transform;
-  box-shadow: 0 26px 60px rgba(58, 42, 30, 0.18);
-}
-.pishtaq__media {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background: var(--ivory-deep);
-}
-.pishtaq__media .hero__video,
-.pishtaq__media img { width: 100%; height: 100%; object-fit: cover; }
-.pishtaq__svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
 .parallax { will-change: transform; }
 
 /* Hero media: landscape video on desktop, portrait video on mobile */
@@ -122,11 +96,10 @@
 .hero__title em { font-style: italic; color: var(--clay); }
 /* keep the framed media within the viewport so hero fits on one screen */
 .hero__media { position: relative; z-index: 1; }
-.pishtaq { max-height: calc(100vh - 10rem); margin: 0 auto; }
-.pishtaq { aspect-ratio: 3 / 4; }
+.hero__media .framed--arch { max-height: calc(100vh - 10rem); margin: 0 auto; }
 @supports (height: 100dvh) {
   .hero { min-height: 100dvh; }
-  .pishtaq { max-height: calc(100dvh - 10rem); }
+  .hero__media .framed--arch { max-height: calc(100dvh - 10rem); }
 }
 .hero__scrollcue { position: absolute; left: 50%; bottom: 2.2rem; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
 .hero__scrollcue .line { width: 1px; height: 42px; background: var(--gold); opacity: 0.6; transform-origin: top; animation: cue 2.4s var(--ease) infinite; }
@@ -134,7 +107,60 @@
 
 /* Royal wordmark under the hero image — mobile only (hidden on desktop) */
 .hero__brand { display: none; }
-.hero__brand-orn { display: block; color: var(--gold); font-size: 1.1rem; line-height: 1; margin-bottom: 0.9rem; }
+
+/* ---- Diya (oil lamp) with flickering flame ---- */
+.diya { position: relative; display: inline-block; width: 48px; height: 60px; margin-bottom: 0.5rem; }
+.diya__svg { position: relative; z-index: 2; width: 100%; height: 100%; overflow: visible; }
+/* warm glow halo behind the flame, gently breathing */
+.diya__glow {
+  position: absolute;
+  top: -14px; left: 50%;
+  width: 70px; height: 70px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  z-index: 1;
+  background: radial-gradient(circle,
+    rgba(255, 214, 140, 0.85) 0%,
+    rgba(232, 160, 60, 0.5) 30%,
+    rgba(200, 110, 40, 0.22) 55%,
+    transparent 72%);
+  filter: blur(3px);
+  animation: diyaGlow 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+/* clay lamp base — antique gold */
+.diya__base { fill: var(--gold); }
+.diya__oil  { fill: #7a5a2e; opacity: 0.85; }
+.diya__tip  { fill: var(--gold-soft); }
+.diya__wick { fill: #3a2a1e; }
+/* flame group flickers as a whole (position + slight shear) */
+.diya__flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: diyaFlicker 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 180, 70, 0.9));
+}
+.diya__flame-outer { fill: #f6a53a; animation: diyaHue 2.6s ease-in-out infinite; }
+.diya__flame-inner { fill: #fff2c0; }
+
+@keyframes diyaFlicker {
+  0%   { transform: scaleY(1) scaleX(1) skewX(0deg); }
+  15%  { transform: scaleY(1.06) scaleX(0.97) skewX(2deg); }
+  30%  { transform: scaleY(0.96) scaleX(1.03) skewX(-2deg); }
+  45%  { transform: scaleY(1.08) scaleX(0.96) skewX(1deg); }
+  60%  { transform: scaleY(0.98) scaleX(1.02) skewX(-1.5deg); }
+  75%  { transform: scaleY(1.04) scaleX(0.98) skewX(1.5deg); }
+  100% { transform: scaleY(1) scaleX(1) skewX(0deg); }
+}
+@keyframes diyaGlow {
+  0%, 100% { opacity: 0.78; transform: translateX(-50%) scale(1); }
+  40%      { opacity: 1;    transform: translateX(-50%) scale(1.12); }
+  70%      { opacity: 0.7;  transform: translateX(-50%) scale(0.95); }
+}
+@keyframes diyaHue {
+  0%, 100% { fill: #f6a53a; }
+  50%      { fill: #f4922a; }
+}
 .hero__brand-name { display: block; font-family: 'Marcellus', var(--serif); color: var(--maroon); font-size: clamp(2.8rem, 13vw, 3.8rem); line-height: 0.95; letter-spacing: 0.02em; }
 .hero__brand-sub { display: block; font-family: 'Marcellus', var(--serif); color: var(--clay); font-size: clamp(0.95rem, 4.4vw, 1.2rem); letter-spacing: 0.5em; text-transform: uppercase; margin-top: 0.5rem; padding-left: 0.5em; }
 .hero__brand-tag { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 1.05rem; margin-top: 1.1rem; position: relative; }
@@ -167,32 +193,6 @@
 .collections__stage { height: min(80vh, 720px); position: relative; }
 
 /* CATALOGUE */
-.catalogue { position: relative; padding: clamp(5rem, 12vh, 10rem) var(--page-x); background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory-deep) 100%); }
-.catalogue__head { text-align: center; margin-bottom: clamp(2.5rem, 6vh, 5rem); }
-.book { position: relative; max-width: 1000px; margin: 0 auto; aspect-ratio: 16 / 10; perspective: 2400px; }
-.book__spread { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; background: var(--ivory); box-shadow: 0 40px 100px rgba(58, 42, 30, 0.22); border: 1px solid rgba(169, 128, 60, 0.18); }
-.book__spread::after { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 60px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgba(58,42,30,0.14), transparent); pointer-events: none; }
-.book__page { position: relative; overflow: hidden; }
-.book__page--img { background: var(--ivory-deep); }
-.book__page--img img { width: 100%; height: 100%; object-fit: cover; }
-.book__page--text { padding: clamp(1.5rem, 4vw, 3.5rem); display: flex; flex-direction: column; justify-content: center; }
-.book__folio { font-family: var(--serif); font-size: 0.95rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1.25rem; }
-.book__controls { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-top: 2.5rem; }
-.book__btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--gold); background: transparent; color: var(--gold); cursor: pointer; font-size: 18px; line-height: 1; transition: background 0.35s var(--ease), color 0.35s var(--ease); display: inline-flex; align-items: center; justify-content: center; }
-.book__btn:hover:not(:disabled) { background: var(--gold); color: var(--ivory); }
-.book__btn:disabled { opacity: 0.3; cursor: default; }
-.book__count { font-size: 12px; letter-spacing: 0.16em; color: var(--ink-soft); text-transform: uppercase; }
-.book__spread.flip-next { animation: flipNext 0.6s var(--ease); }
-.book__spread.flip-prev { animation: flipPrev 0.6s var(--ease); }
-@keyframes flipNext { 0% { transform: rotateY(0deg); opacity: 1; } 50% { transform: rotateY(-12deg); opacity: 0.65; } 100% { transform: rotateY(0deg); opacity: 1; } }
-@keyframes flipPrev { 0% { transform: rotateY(0deg); opacity: 1; } 50% { transform: rotateY(12deg); opacity: 0.65; } 100% { transform: rotateY(0deg); opacity: 1; } }
-
-/* VISIT + FOOTER */
-.visit {
-  position: relative;
-  padding: clamp(5rem, 12vh, 9rem) var(--page-x);
-  background: var(--ivory-deep);
-}
 .visit__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -341,10 +341,6 @@ a.storecard__value:hover { color: var(--clay); }
   .craft__panel { flex: none; grid-template-columns: 1fr; padding: 3rem var(--page-x); }
   .craft__panel .shot { height: auto; aspect-ratio: 4/5; }
   .craft__progress, .craft__hint { display: none; }
-  .book { aspect-ratio: auto; }
-  .book__spread { position: relative; grid-template-columns: 1fr; }
-  .book__spread::after { display: none; }
-  .book__page--img { aspect-ratio: 4/3; }
 }
 
 /* ============================================================
@@ -416,11 +412,6 @@ a.storecard__value:hover { color: var(--clay); }
   .collections__stage { height: 66vh; }
 
   /* --- CATALOGUE book --- */
-  .catalogue { padding-top: 4.5rem; padding-bottom: 5rem; }
-  .catalogue__head .display { font-size: clamp(1.8rem, 8vw, 2.4rem); }
-  .book__page--text { padding: 1.6rem 1.4rem 2rem; text-align: left; }
-  .book__page--text .display { font-size: clamp(1.5rem, 7vw, 2rem); }
-  .book__controls { margin-top: 1.75rem; gap: 1.5rem; }
 
   /* --- VISIT --- */
   .visit { padding-top: 4.5rem; padding-bottom: 5rem; gap: 2.25rem; }
@@ -442,4 +433,5 @@ a.storecard__value:hover { color: var(--clay); }
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
   .craft__intro, .craft__panel { flex: none; }
   .reviewcard__aura { animation: none; }
+  .diya__flame, .diya__glow, .diya__flame-outer { animation: none; }
 }

@@ -5,7 +5,6 @@ import Hero from './sections/Hero';
 import Story from './sections/Story';
 import Craft from './sections/Craft';
 import Collections from './sections/Collections';
-import Catalogue from './sections/Catalogue';
 import Visit from './sections/Visit';
 import Footer from './sections/Footer';
 
@@ -25,7 +24,6 @@ function App() {
         <Story />
         <Craft />
         <Collections />
-        <Catalogue />
         <Visit />
       </main>
       <Footer />

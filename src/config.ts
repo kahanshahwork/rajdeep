@@ -13,7 +13,6 @@ export const nav = [
   { label: 'Story', target: 'story' },
   { label: 'The Craft', target: 'craft' },
   { label: 'Collections', target: 'collections' },
-  { label: 'Catalogue', target: 'catalogue' },
   { label: 'Visit', target: 'visit' },
 ];
 
@@ -104,59 +103,6 @@ export const collections = {
   ],
 };
 
-export interface Leaf {
-  folio: string;
-  name: string;
-  line: string;
-  note: string;
-  image: string;
-  alt: string;
-}
-
-export const catalogue = {
-  eyebrow: 'The Catalogue',
-  title: 'An heirloom book',
-  copy: 'A few pieces worth keeping. Turn the pages.',
-  leaves: [
-    {
-      folio: 'Plate I',
-      name: 'The Lakshmi Necklace',
-      line: 'Temple · 22k gold',
-      note:
-        'The goddess seated on a lotus, flanked by peacocks, cast in pure gold by the lost-wax method and finished by hand. A piece made for the first day of a marriage — and every anniversary after.',
-      image: 'images/temple-necklace-linen.jpg',
-      alt: 'Lakshmi temple necklace and earrings laid on linen',
-    },
-    {
-      folio: 'Plate II',
-      name: 'The Long Temple Haar',
-      line: 'Heirloom · 22k gold, pearl',
-      note:
-        'A long Lakshmi haar in the 19th-century style, its pendant crowned with peacocks and dropped with river pearls. Weighty, ceremonial, and made to be handed down.',
-      image: 'images/temple-set-heirloom.jpg',
-      alt: 'Antique long temple necklace with jhumka earrings',
-    },
-    {
-      folio: 'Plate III',
-      name: 'Peacock Chandbali',
-      line: 'Bridal · gold, emerald, pearl',
-      note:
-        'Two peacocks meet at the centre in green enamel and kundan, framed by a crescent of pearls. The earring that turns a bride’s profile into a portrait.',
-      image: 'images/peacock-chandbali.jpg',
-      alt: 'Antique peacock chandbali earring with emeralds',
-    },
-    {
-      folio: 'Plate IV',
-      name: 'The Medallion Ring',
-      line: 'Statement · gold, ruby, emerald',
-      note:
-        'A design that unfolds like a floral medallion — ruby petals, emerald leaves, and a pearl border, worn like a small piece of architecture on the hand.',
-      image: 'images/ring-medallion.jpg',
-      alt: 'A floral medallion gold ring against sandstone',
-    },
-  ] as Leaf[],
-};
-
 export const visit = {
   eyebrow: 'Visit',
   title: 'Come sit with us',
@@ -224,7 +170,7 @@ export const reviews = {
 export const footer = {
   tagline: 'Stories you can wear.',
   columns: [
-    { heading: 'The House', links: ['Our Story', 'The Craft', 'Collections', 'Catalogue'] },
+    { heading: 'The House', links: ['Our Story', 'The Craft', 'Collections'] },
     { heading: 'Visit', links: ['Kalol Showroom', 'Get Directions', 'Call Us', 'Reviews'] },
   ],
   copyright: '© 2026 Rajdeep Jewellers · Kalol, Gujarat',
