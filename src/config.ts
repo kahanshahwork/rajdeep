@@ -17,7 +17,7 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: 'Heritage Indian Jewellery · Since 1992',
+  eyebrow: 'Heritage Indian Jewellery · Since 2003',
   titleTop: 'Made for moments',
   titleEm: 'kept with care',
   titleBottom: 'passed through generations',
@@ -36,12 +36,12 @@ export const story = {
   eyebrow: 'The House',
   title: 'One bench. Two hands. A promise.',
   paras: [
-    'Rajdeep began in 1992 with a single workbench and a belief that has not changed since: jewellery should be made to be inherited, not replaced.',
+    'Rajdeep began in 2003 with a single workbench and a belief that has not changed since: jewellery should be made to be inherited, not replaced.',
     'What leaves our atelier is never only gold and stone. It carries the patience of the maker, the memory of the family it was made for, and the quiet weight of being kept.',
   ],
   image: 'images/heirloom-box.jpg',
   imageAlt: 'Hands opening an antique box of heirloom jewellery beside old family photographs',
-  year: '1992',
+  year: '2003',
 };
 
 export const craft = {

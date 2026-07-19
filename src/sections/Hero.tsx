@@ -56,77 +56,87 @@ export default function Hero() {
 
             {/* Realistic diya — दीप (deep) = lamp — sits between the two words */}
             <span className="diya">
-              <svg className="diya__svg" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+              <svg className="diya__svg" viewBox="0 0 140 168" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  {/* flame body: blue base → deep orange → gold → white core */}
-                  <radialGradient id="flameBody" cx="50%" cy="72%" r="62%">
-                    <stop offset="0%"  stopColor="#fff7e0" />
-                    <stop offset="26%" stopColor="#ffe07a" />
-                    <stop offset="55%" stopColor="#ffab2e" />
-                    <stop offset="82%" stopColor="#f4770f" />
-                    <stop offset="100%" stopColor="#d84e08" />
+                  {/* flame body: white core → gold → orange → deep ember */}
+                  <radialGradient id="flameBody" cx="50%" cy="74%" r="60%">
+                    <stop offset="0%"  stopColor="#fff8e6" />
+                    <stop offset="22%" stopColor="#ffe488" />
+                    <stop offset="50%" stopColor="#ffb03a" />
+                    <stop offset="80%" stopColor="#f4770f" />
+                    <stop offset="100%" stopColor="#cf4606" />
                   </radialGradient>
-                  <radialGradient id="flameCore" cx="50%" cy="70%" r="55%">
+                  <radialGradient id="flameCore" cx="50%" cy="72%" r="52%">
                     <stop offset="0%"  stopColor="#ffffff" />
                     <stop offset="55%" stopColor="#fff2c4" />
                     <stop offset="100%" stopColor="#ffd66b" stopOpacity="0" />
                   </radialGradient>
-                  {/* faint blue flame root */}
-                  <radialGradient id="flameBlue" cx="50%" cy="30%" r="60%">
-                    <stop offset="0%" stopColor="#8fb7ff" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#8fb7ff" stopOpacity="0" />
+                  <radialGradient id="flameBlue" cx="50%" cy="26%" r="60%">
+                    <stop offset="0%" stopColor="#9dc0ff" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#9dc0ff" stopOpacity="0" />
                   </radialGradient>
-                  {/* clay lamp shading */}
+                  {/* clay body — warm terracotta with form shading */}
                   <linearGradient id="clay" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"  stopColor="#c98a3e" />
-                    <stop offset="45%" stopColor="#9c6326" />
-                    <stop offset="100%" stopColor="#6d3f16" />
+                    <stop offset="0%"  stopColor="#d59a4c" />
+                    <stop offset="40%" stopColor="#a86a2c" />
+                    <stop offset="100%" stopColor="#5e3413" />
                   </linearGradient>
+                  <radialGradient id="clayShine" cx="38%" cy="30%" r="60%">
+                    <stop offset="0%" stopColor="#ffdca0" stopOpacity="0.75" />
+                    <stop offset="60%" stopColor="#ffdca0" stopOpacity="0" />
+                  </radialGradient>
                   <linearGradient id="clayLip" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#e0aa5c" />
-                    <stop offset="100%" stopColor="#a06a2c" />
+                    <stop offset="0%" stopColor="#eab866" />
+                    <stop offset="100%" stopColor="#9c6428" />
                   </linearGradient>
                   <radialGradient id="halo" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%"  stopColor="#ffd98a" stopOpacity="0.85" />
-                    <stop offset="45%" stopColor="#ffab40" stopOpacity="0.35" />
+                    <stop offset="0%"  stopColor="#ffd98a" stopOpacity="0.9" />
+                    <stop offset="42%" stopColor="#ffab40" stopOpacity="0.38" />
                     <stop offset="100%" stopColor="#ffab40" stopOpacity="0" />
                   </radialGradient>
                 </defs>
 
                 {/* glow halo */}
-                <ellipse className="diya__halo" cx="60" cy="52" rx="46" ry="52" fill="url(#halo)" />
+                <ellipse className="diya__halo" cx="70" cy="58" rx="56" ry="64" fill="url(#halo)" />
 
                 {/* flame (grouped so it sways subtly from the wick) */}
                 <g className="diya__flame">
                   <path fill="url(#flameBody)"
-                    d="M60 14
-                       C48 40 42 58 46 74
-                       C49 88 71 88 74 74
-                       C78 58 72 40 60 14 Z" />
+                    d="M70 12
+                       C55 42 47 64 52 84
+                       C56 100 84 100 88 84
+                       C93 64 85 42 70 12 Z" />
                   <path fill="url(#flameBlue)" opacity="0.7"
-                    d="M60 40 C52 54 52 68 60 80 C68 68 68 54 60 40 Z" />
+                    d="M70 44 C60 60 60 78 70 92 C80 78 80 60 70 44 Z" />
                   <path fill="url(#flameCore)"
-                    d="M60 40 C54 54 55 66 60 78 C65 66 66 54 60 40 Z" />
+                    d="M70 46 C62 62 63 78 70 92 C77 78 78 62 70 46 Z" />
                 </g>
 
                 {/* wick */}
-                <rect x="58.5" y="84" width="3" height="10" rx="1.5" fill="#4a3117" />
+                <rect x="67.5" y="96" width="5" height="12" rx="2.5" fill="#4a3117" />
 
-                {/* clay diya lamp */}
+                {/* clay diya lamp — wide shallow bowl */}
                 <path fill="url(#clay)"
-                  d="M14 96
-                     C14 90 30 88 60 88
-                     C90 88 106 90 106 96
-                     C106 112 88 122 60 122
-                     C32 122 14 112 14 96 Z" />
-                {/* oil pool + lip highlight */}
-                <ellipse cx="60" cy="96" rx="40" ry="6" fill="#3a2a14" opacity="0.55" />
-                <path fill="url(#clayLip)" opacity="0.9"
-                  d="M14 96 C14 92 30 90 60 90 C90 90 106 92 106 96
-                     C106 99 90 101 60 101 C30 101 14 99 14 96 Z" />
+                  d="M10 110
+                     C10 102 30 99 70 99
+                     C110 99 130 102 130 110
+                     C130 130 108 142 70 142
+                     C32 142 10 130 10 110 Z" />
+                {/* form-shine on the clay */}
+                <path fill="url(#clayShine)"
+                  d="M10 110 C10 102 30 99 70 99 C110 99 130 102 130 110
+                     C130 122 108 130 70 130 C32 130 10 122 10 110 Z" />
+                {/* dark oil pool */}
+                <ellipse cx="70" cy="110" rx="50" ry="7" fill="#33230f" opacity="0.6" />
+                {/* bright rim / lip */}
+                <path fill="url(#clayLip)" opacity="0.95"
+                  d="M10 110 C10 105 30 102 70 102 C110 102 130 105 130 110
+                     C130 114 108 116 70 116 C32 116 10 114 10 110 Z" />
                 {/* pinched spout holding the wick */}
                 <path fill="url(#clayLip)"
-                  d="M60 122 C62 132 66 138 74 143 C64 141 58 136 60 122 Z" />
+                  d="M70 142 C73 154 78 160 88 166 C75 163 66 158 70 142 Z" />
+                {/* tiny base foot for grounding */}
+                <ellipse cx="70" cy="143" rx="26" ry="4" fill="#4a2c12" opacity="0.45" />
               </svg>
             </span>
 
