@@ -143,8 +143,8 @@ export interface Review {
 export const reviews = {
   eyebrow: 'Kind Words',
   title: 'What people love about us',
-  ratingValue: '4.3',
-  ratingCount: '78',
+  ratingValue: '4.7',
+  ratingCount: '379',
   items: [
     {
       quote:
