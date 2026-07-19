@@ -18,11 +18,11 @@ export const nav = [
 
 export const hero = {
   eyebrow: 'Heritage Indian Jewellery · Since 1992',
-  titleTop: 'Every heirloom',
-  titleEm: 'holds a name',
-  titleBottom: 'before it holds a stone.',
+  titleTop: 'Made for moments',
+  titleEm: 'kept with care',
+  titleBottom: 'passed through generations',
   copy:
-    'For over thirty years, we have made jewellery slowly — by hand, in gold, meant to be worn at weddings and then passed down like a story told again and again.',
+    'For over three decades, every collection has begun the same way—with patient hands, timeless design, and an unwavering commitment to craftsmanship.',
   image: 'images/portrait-lotus-necklace.jpg',
   imageAlt: 'A woman holding a lotus, wearing a kundan necklace and pearl earrings',
   video: 'videos/hero-mobile.mp4',
