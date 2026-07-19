@@ -79,6 +79,76 @@
 .framed { position: relative; overflow: hidden; background: var(--ivory-deep); }
 .framed img { width: 100%; height: 100%; object-fit: cover; }
 .framed--arch { border-top-left-radius: 50% 24%; border-top-right-radius: 50% 24%; }
+
+/* ============================================================
+   PISHTAQ — Indian rectangular archway frame (double layer)
+   outer border → patterned band → inner opening w/ ogee arch
+   ============================================================ */
+.pishtaq {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  will-change: transform;
+}
+/* Outer rectangular frame — antique gold */
+.pishtaq__outer {
+  position: absolute;
+  inset: 0;
+  padding: 10px;                     /* thickness of outer gold rule */
+  background:
+    linear-gradient(145deg, var(--gold) 0%, var(--gold-soft) 40%, var(--gold) 100%);
+  box-shadow:
+    0 24px 60px rgba(58, 42, 30, 0.28),
+    inset 0 0 0 1px rgba(255,255,255,0.18);
+}
+/* The decorated band between the two frame layers (Indian art) */
+.pishtaq__band {
+  position: relative;
+  height: 100%;
+  padding: 22px;                     /* width of the patterned band */
+  background-color: var(--maroon);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(201,154,85,0.16) 0 6px, transparent 6px 12px),
+    radial-gradient(circle at 12px 12px, rgba(201,154,85,0.55) 2px, transparent 2.6px);
+  background-size: auto, 24px 24px;
+  box-shadow:
+    inset 0 0 0 1px rgba(201,154,85,0.5),
+    inset 0 0 22px rgba(0,0,0,0.35);
+}
+/* small carved-lotus corner accents on the band */
+.pishtaq__band::before,
+.pishtaq__band::after {
+  content: '\273A';                  /* ornamental star/floret */
+  position: absolute;
+  color: var(--gold-soft);
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0.9;
+}
+.pishtaq__band::before { top: 4px; left: 8px; }
+.pishtaq__band::after  { top: 4px; right: 8px; }
+
+/* Inner opening — holds the media, cut with a pointed ogee arch on top */
+.pishtaq__inner {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ivory-deep);
+  /* ogee/pointed arch top via mask — rectangle below, arch above */
+  -webkit-mask:
+    radial-gradient(120% 88% at 50% 100%, #000 99.5%, transparent) top / 100% 62% no-repeat,
+    linear-gradient(#000 0 0) bottom / 100% 40% no-repeat;
+          mask:
+    radial-gradient(120% 88% at 50% 100%, #000 99.5%, transparent) top / 100% 62% no-repeat,
+    linear-gradient(#000 0 0) bottom / 100% 40% no-repeat;
+  box-shadow: inset 0 0 0 2px rgba(201,154,85,0.6);
+}
+.pishtaq__inner .hero__video,
+.pishtaq__inner img { width: 100%; height: 100%; object-fit: cover; }
+/* thin keyline that traces just inside the arch opening */
+.pishtaq__keyline {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2;
+}
 .parallax { will-change: transform; }
 
 /* Hero media: landscape video on desktop, portrait video on mobile */
@@ -87,12 +157,20 @@
 .hero__video--mobile { display: none; }
 
 /* HERO */
-.hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1.02fr 0.98fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: 8rem var(--page-x) 4rem; overflow: hidden; }
+.hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1.02fr 0.98fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: 6.5rem var(--page-x) 3rem; overflow: hidden; }
 .hero__aura { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(60% 50% at 78% 42%, rgba(195, 154, 85, 0.28), transparent 70%), radial-gradient(50% 60% at 12% 80%, rgba(138, 75, 47, 0.12), transparent 70%); }
 .hero__content { position: relative; z-index: 2; }
 .hero__media { position: relative; z-index: 1; }
-.hero__title { font-family: var(--serif); font-weight: 400; color: var(--ink); font-size: clamp(3rem, 8vw, 7rem); line-height: 0.92; letter-spacing: -0.015em; }
+.hero__title { font-family: var(--serif); font-weight: 400; color: var(--ink); font-size: clamp(2.6rem, 6.2vw, 5.4rem); line-height: 0.98; letter-spacing: -0.015em; }
 .hero__title em { font-style: italic; color: var(--clay); }
+/* keep the framed media within the viewport so hero fits on one screen */
+.hero__media { position: relative; z-index: 1; }
+.pishtaq { max-height: calc(100vh - 10rem); margin: 0 auto; }
+.pishtaq { aspect-ratio: 3 / 4; }
+@supports (height: 100dvh) {
+  .hero { min-height: 100dvh; }
+  .pishtaq { max-height: calc(100dvh - 10rem); }
+}
 .hero__scrollcue { position: absolute; left: 50%; bottom: 2.2rem; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
 .hero__scrollcue .line { width: 1px; height: 42px; background: var(--gold); opacity: 0.6; transform-origin: top; animation: cue 2.4s var(--ease) infinite; }
 @keyframes cue { 0%{ transform: scaleY(0); } 40%{ transform: scaleY(1);} 100%{ transform: scaleY(0); transform-origin: bottom; } }
@@ -156,11 +234,13 @@
 .visit {
   position: relative;
   padding: clamp(5rem, 12vh, 9rem) var(--page-x);
+  background: var(--ivory-deep);
+}
+.visit__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: start;
-  background: var(--ivory-deep);
 }
 
 /* Store / address card */
@@ -211,8 +291,8 @@ a.storecard__value:hover { color: var(--clay); }
 }
 .visit__maplink:hover { color: var(--gold); }
 
-/* Reviews — full width under the two columns */
-.reviews { grid-column: 1 / -1; margin-top: clamp(3rem, 7vh, 5.5rem); }
+/* Reviews — full width, above the visit block */
+.reviews { margin: 0 0 clamp(3.5rem, 8vh, 6rem); }
 .reviews__head { text-align: center; margin-bottom: 2.75rem; }
 .reviews__rating { display: inline-flex; align-items: center; gap: 0.65rem; margin-top: 1rem; }
 .reviews__stars { color: var(--gold); letter-spacing: 0.12em; font-size: 1.05rem; }
@@ -295,7 +375,7 @@ a.storecard__value:hover { color: var(--clay); }
   .hero__media { max-width: 440px; margin: 0 auto; }
   .story { grid-template-columns: 1fr; }
   .story__year { position: static; display: block; margin-top: 0.5rem; font-size: clamp(4rem, 18vw, 7rem); }
-  .visit { grid-template-columns: 1fr; }
+  .visit__grid { grid-template-columns: 1fr; }
   .foot__grid { grid-template-columns: 1fr; gap: 2rem; }
   .reviews__grid { grid-template-columns: 1fr; }
   .craft__sticky { position: static; height: auto; display: block; }

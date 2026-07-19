@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="hero__aura" />
 
       <div className="hero__content">
-        <p className="eyebrow reveal" style={{ marginBottom: '2rem' }}>
+        <p className="eyebrow reveal" style={{ marginBottom: '1.4rem' }}>
           {hero.eyebrow}
         </p>
         <h1 className="hero__title">
@@ -17,9 +17,9 @@ export default function Hero() {
           <span className="reveal reveal-d3" style={{ display: 'block' }}>{hero.titleBottom}</span>
         </h1>
 
-        <div className="gold-rule reveal reveal-d3" style={{ margin: '2.25rem 0' }} />
+        <div className="gold-rule reveal reveal-d3" style={{ margin: '1.6rem 0' }} />
 
-        <p className="body-copy reveal reveal-d3" style={{ marginBottom: '2.5rem' }}>
+        <p className="body-copy reveal reveal-d3" style={{ marginBottom: '1.8rem' }}>
           {hero.copy}
         </p>
 
@@ -30,31 +30,37 @@ export default function Hero() {
       </div>
 
       <div className="hero__media reveal reveal-d2">
-        <div className="framed framed--arch parallax" data-parallax="-0.06" style={{ aspectRatio: '3 / 4' }}>
-          {/* Desktop: landscape video */}
-          <video
-            className="hero__video hero__video--desktop"
-            src={hero.videoDesktop}
-            poster={hero.videoDesktopPoster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label={hero.imageAlt}
-          />
-          {/* Mobile: portrait video */}
-          <video
-            className="hero__video hero__video--mobile"
-            src={hero.video}
-            poster={hero.videoPoster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label={hero.imageAlt}
-          />
+        <div className="pishtaq parallax" data-parallax="-0.06">
+          <div className="pishtaq__outer">
+            <div className="pishtaq__band">
+              <div className="pishtaq__inner">
+                {/* Desktop: landscape video */}
+                <video
+                  className="hero__video hero__video--desktop"
+                  src={hero.videoDesktop}
+                  poster={hero.videoDesktopPoster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={hero.imageAlt}
+                />
+                {/* Mobile: portrait video */}
+                <video
+                  className="hero__video hero__video--mobile"
+                  src={hero.video}
+                  poster={hero.videoPoster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={hero.imageAlt}
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Mobile-only royal wordmark, sits directly under the image */}
