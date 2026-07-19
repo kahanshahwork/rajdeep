@@ -108,95 +108,49 @@
 /* Royal wordmark under the hero image — mobile only (hidden on desktop) */
 .hero__brand { display: none; }
 
-/* ---- Diya (oil lamp) — realistic living flame, sits inline between words ---- */
+/* ---- Realistic diya — gradient-shaded lamp with a soft living flame ---- */
+.hero__brand-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28em;
+  flex-wrap: nowrap;
+}
 .diya {
   position: relative;
   display: inline-block;
-  width: 34px; height: 50px;
-  vertical-align: middle;
-  margin: 0 0.35em;
+  width: 0.92em;          /* scales with the wordmark size */
+  height: 1.15em;
+  flex: 0 0 auto;
+  transform: translateY(-0.06em);
 }
-.diya__svg { position: relative; z-index: 2; width: 100%; height: 100%; overflow: visible; }
+.diya__svg { width: 100%; height: 100%; overflow: visible; }
 
-/* warm glow halo behind the flame, flickering on its own rhythm */
-.diya__glow {
-  position: absolute;
-  top: -20px; left: 50%;
-  width: 60px; height: 66px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  z-index: 1;
-  background: radial-gradient(circle,
-    rgba(255, 220, 150, 0.9) 0%,
-    rgba(240, 165, 60, 0.55) 28%,
-    rgba(205, 110, 40, 0.22) 52%,
-    transparent 70%);
-  filter: blur(4px);
-  animation: diyaGlow 2.3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-/* lamp */
-.diya__base { fill: var(--gold); }
-.diya__oil  { fill: #7a5a2e; opacity: 0.85; }
-.diya__tip  { fill: var(--gold-soft); }
-.diya__wick { fill: #3a2a1e; }
-
-/* Each flame layer sways from its base with its own timing → organic motion.
-   transform-box:fill-box makes the origin the shape's own base. */
-.diya__flame-outer,
-.diya__flame-mid,
-.diya__flame-inner {
+/* flame sways gently from the wick — subtle, not cartoonish */
+.diya__flame {
   transform-box: fill-box;
-  transform-origin: 50% 100%;
+  transform-origin: 50% 96%;
+  animation: flameSway 2.8s ease-in-out infinite;
 }
-.diya__flame-outer {
-  fill: #ef9a2c;
-  filter: drop-shadow(0 -1px 5px rgba(255, 150, 40, 0.85));
-  animation: flameSwayA 1.15s ease-in-out infinite, flameHue 3s ease-in-out infinite;
+.diya__halo { animation: haloPulse 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+
+@keyframes flameSway {
+  0%, 100% { transform: rotate(-1.4deg) scaleY(1); }
+  30%      { transform: rotate(1deg)    scaleY(1.04); }
+  55%      { transform: rotate(-0.6deg) scaleY(0.98); }
+  80%      { transform: rotate(1.2deg)  scaleY(1.02); }
 }
-.diya__flame-mid {
-  fill: #ffb43f;
-  animation: flameSwayB 0.95s ease-in-out infinite;
-}
-.diya__flame-inner {
-  fill: #fff4cf;
-  animation: flameSwayC 0.7s ease-in-out infinite;
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  45%      { opacity: 1;    transform: scale(1.08); }
+  70%      { opacity: 0.78; transform: scale(0.96); }
 }
 
-/* outer flame — slow, wide sway + breathe */
-@keyframes flameSwayA {
-  0%,100% { transform: rotate(-2.2deg) scaleY(1)    scaleX(1); }
-  25%     { transform: rotate(1.6deg)  scaleY(1.05) scaleX(0.97); }
-  50%     { transform: rotate(2.4deg)  scaleY(0.97) scaleX(1.03); }
-  75%     { transform: rotate(-1.2deg) scaleY(1.06) scaleX(0.96); }
-}
-/* mid flame — quicker, opposite phase */
-@keyframes flameSwayB {
-  0%,100% { transform: rotate(2deg)    scaleY(1.02) translateY(0); }
-  33%     { transform: rotate(-2.6deg) scaleY(0.95) translateY(0.4px); }
-  66%     { transform: rotate(1.4deg)  scaleY(1.07) translateY(-0.5px); }
-}
-/* inner core — fastest flicker, tiny darting */
-@keyframes flameSwayC {
-  0%,100% { transform: rotate(-1.5deg) scaleY(1)    translateY(0); }
-  40%     { transform: rotate(2.2deg)  scaleY(1.1)  translateY(-0.6px); }
-  70%     { transform: rotate(-1deg)   scaleY(0.92) translateY(0.3px); }
-}
-@keyframes diyaGlow {
-  0%,100% { opacity: 0.8;  transform: translateX(-50%) scale(1); }
-  35%     { opacity: 1;    transform: translateX(-50%) scale(1.14); }
-  55%     { opacity: 0.68; transform: translateX(-50%) scale(0.93); }
-  80%     { opacity: 0.95; transform: translateX(-50%) scale(1.06); }
-}
-@keyframes flameHue {
-  0%,100% { fill: #ef9a2c; }
-  50%     { fill: #f4880f; }
-}
-
-/* Brand block: Rajdeep + diya + Jewellers share a baseline row */
-.hero__brand-name { display: inline; font-family: 'Marcellus', var(--serif); color: var(--maroon); font-size: clamp(2.8rem, 13vw, 3.8rem); line-height: 0.95; letter-spacing: 0.02em; }
-.hero__brand-sub { display: block; font-family: 'Marcellus', var(--serif); color: var(--clay); font-size: clamp(0.95rem, 4.4vw, 1.2rem); letter-spacing: 0.5em; text-transform: uppercase; margin-top: 0.5rem; padding-left: 0.5em; }
+/* Brand block */
+.hero__brand-name,
+.hero__brand-sub { font-family: 'Marcellus', var(--serif); line-height: 0.95; letter-spacing: 0.01em; font-size: clamp(1.8rem, 8vw, 3rem); }
+.hero__brand-name { color: var(--maroon); }
+.hero__brand-sub { color: var(--clay); }
 .hero__brand-tag { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 1.05rem; margin-top: 1.1rem; position: relative; }
 .hero__brand-tag::before, .hero__brand-tag::after { content: ''; position: absolute; top: 50%; width: 22px; height: 1px; background: var(--gold); opacity: 0.5; }
 .hero__brand-tag::before { right: calc(100% + 12px); }
@@ -226,7 +180,8 @@
 .collections__head { padding: 0 var(--page-x); margin-bottom: clamp(2rem, 5vh, 4rem); }
 .collections__stage { height: min(80vh, 720px); position: relative; }
 
-/* CATALOGUE */
+/* VISIT */
+.visit { position: relative; padding: clamp(5rem, 12vh, 9rem) var(--page-x); background: var(--ivory-deep); }
 .visit__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -444,6 +399,8 @@
 
   /* --- FOOTER --- */
   .foot__grid { grid-template-columns: 1fr; gap: 2.25rem; }
+  /* mobile: keep only the brand + showroom; hide The House / Visit link columns */
+  .foot__col:not(.foot__store) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
@@ -453,5 +410,5 @@
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
   .craft__intro, .craft__panel { flex: none; }
   .reviewcard__aura { animation: none; }
-  .diya__flame-outer, .diya__flame-mid, .diya__flame-inner, .diya__glow { animation: none; }
+  .diya__flame, .diya__halo { animation: none; }
 }
