@@ -327,7 +327,7 @@ class App {
   planeGeometry: any; medias: Media[] = []; mediasImages: any[] = [];
   screen: any; viewport: any; raf = 0; isDown = false; start = 0;
   boundOnResize: any; boundOnWheel: any; boundOnTouchDown: any; boundOnTouchMove: any; boundOnTouchUp: any; boundOnKeyDown: any;
-  constructor(container: HTMLElement, { items, bend, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px Figtree', scrollSpeed = 2, scrollEase = 0.05 }: any = {}) {
+  constructor(container: HTMLElement, { items, bend, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px Figtree', scrollSpeed = 0.5, scrollEase = 0 }: any = {}) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
