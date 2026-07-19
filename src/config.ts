@@ -3,7 +3,7 @@
 // ============================================================
 
 export const brand = {
-  name: 'RAJDEEP Jewellers',
+  name: 'RAJDEEP',
   full: 'Rajdeep Jewellers',
   tagline: 'Stories you can wear',
   established: 'Kalol · Gujarat',
