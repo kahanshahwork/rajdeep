@@ -51,7 +51,6 @@ export default function Hero() {
 
         {/* Mobile-only royal wordmark, sits directly under the image */}
         <div className="hero__brand" aria-hidden="true">
-          <span className="hero__brand-bg" />
           <span className="hero__brand-row">
             <span className="hero__brand-name">Rajdeep</span>
 

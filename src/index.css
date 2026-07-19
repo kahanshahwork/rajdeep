@@ -355,26 +355,9 @@
   .hero__brand {
     order: 2;
     display: block;
-    position: relative;
     margin-top: 1.6rem;
     margin-bottom: 2.4rem;
   }
-  /* Mandala behind the wordmark. Change `opacity` to taste (0–1). */
-  .hero__brand-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 128%;                 /* size of the mandala relative to the text block */
-    aspect-ratio: 1 / 1;
-    transform: translate(-50%, -50%);
-    background: url('/images/mandala.jpg') center / contain no-repeat;
-    mix-blend-mode: multiply;    /* drops the white background, keeps the gold */
-    opacity: 0.22;               /* ← ADJUST THIS: 0 = invisible, 1 = full strength */
-    z-index: 0;
-    pointer-events: none;
-  }
-  .hero__brand-row { position: relative; z-index: 1; }
-  .hero__brand-tag { position: relative; z-index: 1; }
   .hero__content {
     order: 3;
     display: flex; flex-direction: column; align-items: center;
