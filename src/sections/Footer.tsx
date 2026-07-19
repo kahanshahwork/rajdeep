@@ -15,7 +15,8 @@ export default function Footer() {
     <footer className="foot">
       <div className="foot__grid">
         <div>
-          <div className="mark mark--light" style={{ fontSize: '1.9rem' }}>
+          <img src="/images/rj-logo.png" alt="" className="foot__logo-img" />
+          <div className="mark mark--light" style={{ fontSize: '1.9rem', marginTop: '0.75rem' }}>
             {brand.name}
             <span className="mark-diamond" />
           </div>

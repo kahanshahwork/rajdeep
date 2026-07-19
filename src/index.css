@@ -60,6 +60,8 @@
 .link-arrow:hover span { transform: translateX(6px); }
 
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem var(--page-x); transition: background 0.5s var(--ease), padding 0.5s var(--ease); }
+.nav__logo-img { height: 40px; width: auto; display: block; }
+.nav--scrolled .nav__logo-img { height: 34px; transition: height 0.5s var(--ease); }
 .nav--scrolled { background: rgba(244, 236, 222, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-top: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(169, 128, 60, 0.14); }
 .nav__links { display: flex; gap: clamp(1rem, 2.6vw, 2.5rem); align-items: center; }
 .nav__link { background: none; border: 0; cursor: pointer; font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink); padding: 0.25rem 0; position: relative; transition: color 0.3s var(--ease); }
@@ -108,50 +110,32 @@
 /* Royal wordmark under the hero image — mobile only (hidden on desktop) */
 .hero__brand { display: none; }
 
-/* ---- Realistic diya — gradient-shaded lamp with a soft living flame ---- */
-.hero__brand-row {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.28em;
-  flex-wrap: nowrap;
-}
-.diya {
+/* ---- Logo + wordmark (mobile hero) ---- */
+.hero__brand-logo {
+  display: block;
+  width: clamp(90px, 34vw, 140px);
+  height: auto;
+  margin: 0 auto 0.6rem;
   position: relative;
-  display: inline-block;
-  width: 1.35em;          /* larger — scales with the wordmark size */
-  height: 1.62em;
-  flex: 0 0 auto;
-  transform: translateY(-0.12em);
+  z-index: 1;
 }
-.diya__svg { width: 100%; height: 100%; overflow: visible; }
-
-/* flame sways gently from the wick — subtle, not cartoonish */
-.diya__flame {
-  transform-box: fill-box;
-  transform-origin: 50% 96%;
-  animation: flameSway 2.8s ease-in-out infinite;
+.hero__brand-row {
+  display: block;
+  position: relative;
+  z-index: 1;
 }
-.diya__halo { animation: haloPulse 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
-
-@keyframes flameSway {
-  0%, 100% { transform: rotate(-1.4deg) scaleY(1); }
-  30%      { transform: rotate(1deg)    scaleY(1.04); }
-  55%      { transform: rotate(-0.6deg) scaleY(0.98); }
-  80%      { transform: rotate(1.2deg)  scaleY(1.02); }
+.hero__brand-name {
+  font-family: 'Marcellus', var(--serif); color: var(--maroon);
+  line-height: 0.95; letter-spacing: 0.02em;
+  font-size: clamp(2.4rem, 12vw, 3.4rem);
 }
-@keyframes haloPulse {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  45%      { opacity: 1;    transform: scale(1.08); }
-  70%      { opacity: 0.78; transform: scale(0.96); }
+.hero__brand-sub {
+  display: block;
+  font-family: 'Marcellus', var(--serif); color: var(--clay);
+  font-size: clamp(0.95rem, 4.4vw, 1.2rem); letter-spacing: 0.5em;
+  text-transform: uppercase; margin-top: 0.35rem; padding-left: 0.5em;
 }
-
-/* Brand block */
-.hero__brand-name,
-.hero__brand-sub { font-family: 'Marcellus', var(--serif); line-height: 0.95; letter-spacing: 0.01em; font-size: clamp(1.8rem, 8vw, 3rem); }
-.hero__brand-name { color: var(--maroon); }
-.hero__brand-sub { color: var(--clay); }
-.hero__brand-tag { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 1.05rem; margin-top: 1.1rem; position: relative; }
+.hero__brand-tag { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 1.05rem; margin-top: 1.1rem; position: relative; z-index: 1; }
 .hero__brand-tag::before, .hero__brand-tag::after { content: ''; position: absolute; top: 50%; width: 22px; height: 1px; background: var(--gold); opacity: 0.5; }
 .hero__brand-tag::before { right: calc(100% + 12px); }
 .hero__brand-tag::after  { left: calc(100% + 12px); }
@@ -289,6 +273,7 @@
 .reviewcard__name { font-family: var(--sans); font-weight: 400; color: var(--maroon); letter-spacing: 0.02em; }
 .reviewcard__meta { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 .foot { background: var(--maroon); color: var(--ivory); padding: clamp(3.5rem, 8vh, 6rem) var(--page-x) 2.5rem; }
+.foot__logo-img { height: 64px; width: auto; display: block; }
 .foot__grid { display: grid; grid-template-columns: 1.5fr 0.9fr 0.9fr 1.2fr; gap: 2.5rem; align-items: start; }
 .foot a, .foot button { color: var(--ivory); opacity: 0.72; text-decoration: none; background: none; border: 0; cursor: pointer; padding: 0; text-align: left; font-family: var(--sans); font-size: 0.95rem; transition: opacity 0.3s var(--ease); }
 .foot a:hover, .foot button:hover { opacity: 1; }
@@ -355,6 +340,7 @@
   .hero__brand {
     order: 2;
     display: block;
+    position: relative;
     margin-top: 1.6rem;
     margin-bottom: 2.4rem;
   }
@@ -410,5 +396,4 @@
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
   .craft__intro, .craft__panel { flex: none; }
   .reviewcard__aura { animation: none; }
-  .diya__flame, .diya__halo { animation: none; }
 }

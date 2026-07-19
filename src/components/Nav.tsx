@@ -26,13 +26,13 @@ export default function Nav() {
   return (
     <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <button
-        className="mark"
-        style={{ fontSize: '1.5rem', background: 'none', border: 0, cursor: 'pointer' }}
+        className="nav__logo"
+        style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}
         onClick={top}
         aria-label="Rajdeep Jewellers — top"
       >
-        {brand.name}
-        <span className="mark-diamond" />
+        <img src="/images/rj-logo.png" alt="" className="nav__logo-img" />
+        <span className="mark" style={{ fontSize: '1.5rem' }}>{brand.name}</span>
       </button>
 
       <button className="nav__toggle" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">
