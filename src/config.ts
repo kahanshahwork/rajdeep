@@ -107,7 +107,7 @@ export const visit = {
   eyebrow: 'Visit',
   title: 'Come sit with us',
   copy:
-    'Every Rajdeep piece begins as a conversation. Visit our showroom in Kalol, and Manojbhai and the team will walk you through motifs, stones, and the story you want to carry.',
+    'Every Rajdeep piece begins as a conversation. Visit our showroom in Kalol, the team will walk you through motifs, stones, and the story you want to carry.',
   image: 'images/hero-lotus.jpg',
   alt: 'A gold kundan ring worn with an antique bangle on a red saree',
 
