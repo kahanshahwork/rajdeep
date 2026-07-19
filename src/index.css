@@ -108,60 +108,94 @@
 /* Royal wordmark under the hero image — mobile only (hidden on desktop) */
 .hero__brand { display: none; }
 
-/* ---- Diya (oil lamp) with flickering flame ---- */
-.diya { position: relative; display: inline-block; width: 48px; height: 60px; margin-bottom: 0.5rem; }
+/* ---- Diya (oil lamp) — realistic living flame, sits inline between words ---- */
+.diya {
+  position: relative;
+  display: inline-block;
+  width: 34px; height: 50px;
+  vertical-align: middle;
+  margin: 0 0.35em;
+}
 .diya__svg { position: relative; z-index: 2; width: 100%; height: 100%; overflow: visible; }
-/* warm glow halo behind the flame, gently breathing */
+
+/* warm glow halo behind the flame, flickering on its own rhythm */
 .diya__glow {
   position: absolute;
-  top: -14px; left: 50%;
-  width: 70px; height: 70px;
+  top: -20px; left: 50%;
+  width: 60px; height: 66px;
   transform: translateX(-50%);
   border-radius: 50%;
   z-index: 1;
   background: radial-gradient(circle,
-    rgba(255, 214, 140, 0.85) 0%,
-    rgba(232, 160, 60, 0.5) 30%,
-    rgba(200, 110, 40, 0.22) 55%,
-    transparent 72%);
-  filter: blur(3px);
-  animation: diyaGlow 3.2s ease-in-out infinite;
+    rgba(255, 220, 150, 0.9) 0%,
+    rgba(240, 165, 60, 0.55) 28%,
+    rgba(205, 110, 40, 0.22) 52%,
+    transparent 70%);
+  filter: blur(4px);
+  animation: diyaGlow 2.3s ease-in-out infinite;
   pointer-events: none;
 }
-/* clay lamp base — antique gold */
+
+/* lamp */
 .diya__base { fill: var(--gold); }
 .diya__oil  { fill: #7a5a2e; opacity: 0.85; }
 .diya__tip  { fill: var(--gold-soft); }
 .diya__wick { fill: #3a2a1e; }
-/* flame group flickers as a whole (position + slight shear) */
-.diya__flame {
+
+/* Each flame layer sways from its base with its own timing → organic motion.
+   transform-box:fill-box makes the origin the shape's own base. */
+.diya__flame-outer,
+.diya__flame-mid,
+.diya__flame-inner {
   transform-box: fill-box;
   transform-origin: 50% 100%;
-  animation: diyaFlicker 1.8s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(255, 180, 70, 0.9));
 }
-.diya__flame-outer { fill: #f6a53a; animation: diyaHue 2.6s ease-in-out infinite; }
-.diya__flame-inner { fill: #fff2c0; }
+.diya__flame-outer {
+  fill: #ef9a2c;
+  filter: drop-shadow(0 -1px 5px rgba(255, 150, 40, 0.85));
+  animation: flameSwayA 1.15s ease-in-out infinite, flameHue 3s ease-in-out infinite;
+}
+.diya__flame-mid {
+  fill: #ffb43f;
+  animation: flameSwayB 0.95s ease-in-out infinite;
+}
+.diya__flame-inner {
+  fill: #fff4cf;
+  animation: flameSwayC 0.7s ease-in-out infinite;
+}
 
-@keyframes diyaFlicker {
-  0%   { transform: scaleY(1) scaleX(1) skewX(0deg); }
-  15%  { transform: scaleY(1.06) scaleX(0.97) skewX(2deg); }
-  30%  { transform: scaleY(0.96) scaleX(1.03) skewX(-2deg); }
-  45%  { transform: scaleY(1.08) scaleX(0.96) skewX(1deg); }
-  60%  { transform: scaleY(0.98) scaleX(1.02) skewX(-1.5deg); }
-  75%  { transform: scaleY(1.04) scaleX(0.98) skewX(1.5deg); }
-  100% { transform: scaleY(1) scaleX(1) skewX(0deg); }
+/* outer flame — slow, wide sway + breathe */
+@keyframes flameSwayA {
+  0%,100% { transform: rotate(-2.2deg) scaleY(1)    scaleX(1); }
+  25%     { transform: rotate(1.6deg)  scaleY(1.05) scaleX(0.97); }
+  50%     { transform: rotate(2.4deg)  scaleY(0.97) scaleX(1.03); }
+  75%     { transform: rotate(-1.2deg) scaleY(1.06) scaleX(0.96); }
+}
+/* mid flame — quicker, opposite phase */
+@keyframes flameSwayB {
+  0%,100% { transform: rotate(2deg)    scaleY(1.02) translateY(0); }
+  33%     { transform: rotate(-2.6deg) scaleY(0.95) translateY(0.4px); }
+  66%     { transform: rotate(1.4deg)  scaleY(1.07) translateY(-0.5px); }
+}
+/* inner core — fastest flicker, tiny darting */
+@keyframes flameSwayC {
+  0%,100% { transform: rotate(-1.5deg) scaleY(1)    translateY(0); }
+  40%     { transform: rotate(2.2deg)  scaleY(1.1)  translateY(-0.6px); }
+  70%     { transform: rotate(-1deg)   scaleY(0.92) translateY(0.3px); }
 }
 @keyframes diyaGlow {
-  0%, 100% { opacity: 0.78; transform: translateX(-50%) scale(1); }
-  40%      { opacity: 1;    transform: translateX(-50%) scale(1.12); }
-  70%      { opacity: 0.7;  transform: translateX(-50%) scale(0.95); }
+  0%,100% { opacity: 0.8;  transform: translateX(-50%) scale(1); }
+  35%     { opacity: 1;    transform: translateX(-50%) scale(1.14); }
+  55%     { opacity: 0.68; transform: translateX(-50%) scale(0.93); }
+  80%     { opacity: 0.95; transform: translateX(-50%) scale(1.06); }
 }
-@keyframes diyaHue {
-  0%, 100% { fill: #f6a53a; }
-  50%      { fill: #f4922a; }
+@keyframes flameHue {
+  0%,100% { fill: #ef9a2c; }
+  50%     { fill: #f4880f; }
 }
-.hero__brand-name { display: block; font-family: 'Marcellus', var(--serif); color: var(--maroon); font-size: clamp(2.8rem, 13vw, 3.8rem); line-height: 0.95; letter-spacing: 0.02em; }
+
+/* Brand block: Rajdeep + diya + Jewellers share a baseline row */
+.hero__brand-name { display: inline; font-family: 'Marcellus', var(--serif); color: var(--maroon); font-size: clamp(2.8rem, 13vw, 3.8rem); line-height: 0.95; letter-spacing: 0.02em; }
 .hero__brand-sub { display: block; font-family: 'Marcellus', var(--serif); color: var(--clay); font-size: clamp(0.95rem, 4.4vw, 1.2rem); letter-spacing: 0.5em; text-transform: uppercase; margin-top: 0.5rem; padding-left: 0.5em; }
 .hero__brand-tag { display: inline-block; font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 1.05rem; margin-top: 1.1rem; position: relative; }
 .hero__brand-tag::before, .hero__brand-tag::after { content: ''; position: absolute; top: 50%; width: 22px; height: 1px; background: var(--gold); opacity: 0.5; }
@@ -201,26 +235,7 @@
 }
 
 /* Store / address card */
-.storecard {
-  margin-top: 0.5rem;
-  padding: 1.75rem 1.75rem 1.9rem;
-  background: var(--ivory);
-  border: 1px solid rgba(169, 128, 60, 0.25);
-  border-radius: 4px;
-  box-shadow: 0 20px 60px rgba(58, 42, 30, 0.08);
-}
-.storecard__addr {
-  font-style: normal;
-  color: var(--ink-soft);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-.storecard__rows { display: grid; gap: 0.75rem; margin-bottom: 1.75rem; }
-.storecard__row { display: flex; align-items: baseline; gap: 1rem; border-top: 1px solid rgba(169, 128, 60, 0.18); padding-top: 0.75rem; }
-.storecard__label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); min-width: 56px; }
-.storecard__value { color: var(--ink); font-size: 1.02rem; text-decoration: none; }
-a.storecard__value:hover { color: var(--clay); }
+
 .storecard__cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
 
 /* Embedded map */
@@ -319,10 +334,16 @@ a.storecard__value:hover { color: var(--clay); }
 .reviewcard__name { font-family: var(--sans); font-weight: 400; color: var(--maroon); letter-spacing: 0.02em; }
 .reviewcard__meta { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 .foot { background: var(--maroon); color: var(--ivory); padding: clamp(3.5rem, 8vh, 6rem) var(--page-x) 2.5rem; }
-.foot__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; align-items: start; }
+.foot__grid { display: grid; grid-template-columns: 1.5fr 0.9fr 0.9fr 1.2fr; gap: 2.5rem; align-items: start; }
 .foot a, .foot button { color: var(--ivory); opacity: 0.72; text-decoration: none; background: none; border: 0; cursor: pointer; padding: 0; text-align: left; font-family: var(--sans); font-size: 0.95rem; transition: opacity 0.3s var(--ease); }
 .foot a:hover, .foot button:hover { opacity: 1; }
 .foot__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+/* footer showroom address block */
+.foot__addr { font-style: normal; color: var(--ivory); opacity: 0.78; font-size: 0.95rem; line-height: 1.65; }
+.foot__store-name { display: block; font-family: var(--serif); font-size: 1.2rem; opacity: 1; margin-bottom: 0.4rem; }
+.foot__store-meta { margin-top: 1rem; display: grid; gap: 0.35rem; }
+.foot__store-meta a { opacity: 0.85; font-size: 1rem; }
+.foot__store-meta span { color: var(--ivory); opacity: 0.6; font-size: 0.85rem; letter-spacing: 0.04em; }
 
 /* ============================================================
    RESPONSIVE — TABLET (≤980px)
@@ -333,7 +354,7 @@ a.storecard__value:hover { color: var(--clay); }
   .story { grid-template-columns: 1fr; }
   .story__year { position: static; display: block; margin-top: 0.5rem; font-size: clamp(4rem, 18vw, 7rem); }
   .visit__grid { grid-template-columns: 1fr; }
-  .foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .foot__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .reviews__grid { grid-template-columns: 1fr; }
   .craft__sticky { position: static; height: auto; display: block; }
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
@@ -416,14 +437,13 @@ a.storecard__value:hover { color: var(--clay); }
   /* --- VISIT --- */
   .visit { padding-top: 4.5rem; padding-bottom: 5rem; gap: 2.25rem; }
   .visit .display { font-size: clamp(2rem, 9vw, 2.8rem); }
-  .storecard { padding: 1.4rem; }
   .storecard__cta .btn { flex: 1; justify-content: center; }
   .visit__map iframe { height: 320px; }
   .reviews { margin-top: 3rem; }
   .reviews__grid { grid-template-columns: 1fr; }
 
   /* --- FOOTER --- */
-  .foot__grid { gap: 2.25rem; }
+  .foot__grid { grid-template-columns: 1fr; gap: 2.25rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
@@ -433,5 +453,5 @@ a.storecard__value:hover { color: var(--clay); }
   .craft__track { flex-direction: column; transform: none !important; height: auto; }
   .craft__intro, .craft__panel { flex: none; }
   .reviewcard__aura { animation: none; }
-  .diya__flame, .diya__glow, .diya__flame-outer { animation: none; }
+  .diya__flame-outer, .diya__flame-mid, .diya__flame-inner, .diya__glow { animation: none; }
 }

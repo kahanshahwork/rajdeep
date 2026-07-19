@@ -51,29 +51,32 @@ export default function Hero() {
 
         {/* Mobile-only royal wordmark, sits directly under the image */}
         <div className="hero__brand" aria-hidden="true">
-          {/* Diya — देdeep means lamp; a flickering flame over the name */}
+          <span className="hero__brand-name">Rajdeep</span>
+
+          {/* Diya — दीप (deep) means lamp; a live flame between the two words */}
           <span className="diya">
             <span className="diya__glow" />
-            <svg className="diya__svg" viewBox="0 0 60 76" xmlns="http://www.w3.org/2000/svg">
-              {/* flame (outer + inner), animated via CSS */}
+            <svg className="diya__svg" viewBox="0 0 64 92" xmlns="http://www.w3.org/2000/svg">
+              {/* flame: three stacked layers, each swaying independently */}
               <g className="diya__flame">
                 <path className="diya__flame-outer"
-                  d="M30 6 C22 20 20 30 30 40 C40 30 38 20 30 6 Z" />
+                  d="M32 8 C22 26 20 40 32 54 C44 40 42 26 32 8 Z" />
+                <path className="diya__flame-mid"
+                  d="M32 18 C26 30 25 40 32 52 C39 40 38 30 32 18 Z" />
                 <path className="diya__flame-inner"
-                  d="M30 18 C26 26 26 32 30 39 C34 32 34 26 30 18 Z" />
+                  d="M32 30 C29 37 29 44 32 52 C35 44 35 37 32 30 Z" />
               </g>
               {/* wick */}
-              <rect className="diya__wick" x="29" y="40" width="2" height="6" rx="1" />
+              <rect className="diya__wick" x="31" y="52" width="2" height="7" rx="1" />
               {/* clay lamp base */}
               <path className="diya__base"
-                d="M8 50 C8 47 14 46 30 46 C46 46 52 47 52 50
-                   C52 58 44 64 30 64 C16 64 8 58 8 50 Z" />
-              <ellipse className="diya__oil" cx="30" cy="50" rx="19" ry="3.4" />
-              {/* little decorative tip on the diya lip */}
-              <path className="diya__tip" d="M30 64 C31 68 33 70 36 72 C31 71 29 69 30 64 Z" />
+                d="M8 64 C8 61 15 60 32 60 C49 60 56 61 56 64
+                   C56 73 47 79 32 79 C17 79 8 73 8 64 Z" />
+              <ellipse className="diya__oil" cx="32" cy="64" rx="21" ry="3.6" />
+              <path className="diya__tip" d="M32 79 C33 84 35 87 39 89 C33 88 30 85 32 79 Z" />
             </svg>
           </span>
-          <span className="hero__brand-name">Rajdeep</span>
+
           <span className="hero__brand-sub">Jewellers</span>
           <span className="hero__brand-tag">{brand.tagline}</span>
         </div>

@@ -4,6 +4,8 @@ import { brand, footer, visit } from '../config';
 const targetFor = (heading: string) => (heading === 'Visit' ? 'visit' : 'collections');
 
 export default function Footer() {
+  const s = visit.store;
+
   const go = (target: string) => {
     const el = document.getElementById(target);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -39,6 +41,23 @@ export default function Footer() {
             </ul>
           </div>
         ))}
+
+        {/* Showroom address + contact */}
+        <div className="foot__col foot__store">
+          <p className="eyebrow" style={{ color: 'var(--gold-soft)', marginBottom: '1.25rem' }}>
+            Showroom
+          </p>
+          <address className="foot__addr">
+            <span className="foot__store-name">{s.name}</span>
+            {s.line1}<br />
+            {s.line2}<br />
+            {s.city}
+          </address>
+          <div className="foot__store-meta">
+            <a href={`tel:${s.phoneDial}`}>{s.phoneDisplay}</a>
+            <span>{s.hours}</span>
+          </div>
+        </div>
       </div>
 
       <hr style={{ border: 0, height: '1px', background: 'rgba(244,236,222,0.16)', margin: '3.5rem 0 1.5rem' }} />
