@@ -3,7 +3,7 @@ import { brand, footer, visit } from '../config';
 // small helper: which section a footer link scrolls to
 const targetFor = (heading: string) => (heading === 'Visit' ? 'visit' : 'collections');
 
-export default function Footer() {
+export default function Footer({ onAdmin }: { onAdmin?: () => void }) {
   const s = visit.store;
 
   const go = (target: string) => {
@@ -68,6 +68,16 @@ export default function Footer() {
       >
         <span>{footer.copyright}</span>
         <span>{visit.contact.phoneDisplay}</span>
+      </div>
+
+      <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+        <button
+          className="foot__admin"
+          onClick={onAdmin}
+          aria-label="Admin login"
+        >
+          Admin
+        </button>
       </div>
     </footer>
   );

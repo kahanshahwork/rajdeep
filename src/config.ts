@@ -17,12 +17,12 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: 'Heritage Indian Jewellery · Since 2003',
-  titleTop: 'Made for moments',
-  titleEm: 'kept with care',
-  titleBottom: 'passed through generations',
+  eyebrow: 'Heritage Indian Jewellery · Since 1992',
+  titleTop: 'Every heirloom',
+  titleEm: 'holds a name',
+  titleBottom: 'before it holds a stone.',
   copy:
-    'For over three decades, every collection has begun the same way—with patient hands, timeless design, and an unwavering commitment to craftsmanship.',
+    'For over thirty years, we have made jewellery slowly — by hand, in gold, meant to be worn at weddings and then passed down like a story told again and again.',
   image: 'images/portrait-lotus-necklace.jpg',
   imageAlt: 'A woman holding a lotus, wearing a kundan necklace and pearl earrings',
   video: 'videos/hero-mobile.mp4',
@@ -36,12 +36,12 @@ export const story = {
   eyebrow: 'The House',
   title: 'One bench. Two hands. A promise.',
   paras: [
-    'Rajdeep began in 2003 with a single workbench and a belief that has not changed since: jewellery should be made to be inherited, not replaced.',
+    'Rajdeep began in 1992 with a single workbench and a belief that has not changed since: jewellery should be made to be inherited, not replaced.',
     'What leaves our atelier is never only gold and stone. It carries the patience of the maker, the memory of the family it was made for, and the quiet weight of being kept.',
   ],
   image: 'images/heirloom-box.jpg',
   imageAlt: 'Hands opening an antique box of heirloom jewellery beside old family photographs',
-  year: '2003',
+  year: '1992',
 };
 
 export const craft = {
@@ -107,7 +107,7 @@ export const visit = {
   eyebrow: 'Visit',
   title: 'Come sit with us',
   copy:
-    'Every Rajdeep piece begins as a conversation. Visit our showroom in Kalol, the team will walk you through motifs, stones, and the story you want to carry.',
+    'Every Rajdeep piece begins as a conversation. Visit our showroom in Kalol, and Manojbhai and the team will walk you through motifs, stones, and the story you want to carry.',
   image: 'images/hero-lotus.jpg',
   alt: 'A gold kundan ring worn with an antique bangle on a red saree',
 
@@ -122,6 +122,8 @@ export const visit = {
     hours: 'Mon – Sat · 10am – 8pm',
     mapsLink: 'https://www.google.com/maps/search/?api=1&query=Rajdeep+Jewellers+Shree+Vaibhav+Complex+Kalol+382721',
     directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=Rajdeep+Jewellers+Shree+Vaibhav+Complex+Khuni+Bunglow+Cross+Road+Kalol+382721',
+    whatsapp: 'https://wa.me/918488995355?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20your%20jewellery.',
+    instagram: 'https://www.instagram.com/rajdeep_jewellers_/',
     // key-less embed of the address
     mapEmbed: 'https://maps.google.com/maps?q=Rajdeep%20Jewellers%20Shree%20Vaibhav%20Complex%20Khuni%20Bunglow%20Cross%20Road%20Kalol%20382721&t=&z=16&ie=UTF8&iwloc=&output=embed',
   },
@@ -143,8 +145,8 @@ export interface Review {
 export const reviews = {
   eyebrow: 'Kind Words',
   title: 'What people love about us',
-  ratingValue: '4.7',
-  ratingCount: '379',
+  ratingValue: '4.3',
+  ratingCount: '78',
   items: [
     {
       quote:
