@@ -62,6 +62,18 @@
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem var(--page-x); transition: background 0.5s var(--ease), padding 0.5s var(--ease); }
 .nav__logo-img { height: 40px; width: auto; display: block; }
 .nav--scrolled .nav__logo-img { height: 34px; transition: height 0.5s var(--ease); }
+/* nav wordmark: RAJDEEP with small JEWELLERS */
+.nav__wordmark { display: inline-flex; align-items: baseline; gap: 0.4em; line-height: 1; }
+.nav__wordmark-sub {
+  font-family: 'Marcellus', var(--serif); color: var(--clay);
+  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+}
+/* footer wordmark sub */
+.foot__wordmark-sub {
+  display: block; font-family: 'Marcellus', var(--serif); color: var(--gold-soft);
+  font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase;
+  margin-top: 0.35rem; padding-left: 0.15rem;
+}
 .nav--scrolled { background: rgba(244, 236, 222, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-top: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(169, 128, 60, 0.14); }
 .nav__links { display: flex; gap: clamp(1rem, 2.6vw, 2.5rem); align-items: center; }
 .nav__link { background: none; border: 0; cursor: pointer; font-family: var(--sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink); padding: 0.25rem 0; position: relative; transition: color 0.3s var(--ease); }
@@ -332,6 +344,10 @@
   .nav__links--open { display: flex; position: fixed; inset: 0; background: var(--ivory); flex-direction: column; justify-content: center; align-items: center; gap: 1.75rem; z-index: 99; }
   .nav__links--open .nav__link { font-size: 18px; }
   .nav__toggle { display: block; z-index: 101; }
+  /* mobile: stack Rajdeep over small Jewellers */
+  .nav__wordmark { flex-direction: column; align-items: flex-start; gap: 0.1em; }
+  .nav__wordmark .mark { font-size: 1.35rem !important; line-height: 1; }
+  .nav__wordmark-sub { font-size: 0.58rem; letter-spacing: 0.3em; }
 
   /* --- HERO: image centred, royal wordmark beneath, text below --- */
   .hero {

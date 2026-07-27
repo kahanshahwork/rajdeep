@@ -20,6 +20,7 @@ export default function Footer({ onAdmin }: { onAdmin?: () => void }) {
             {brand.name}
             <span className="mark-diamond" />
           </div>
+          <span className="foot__wordmark-sub">Jewellers</span>
           <p
             className="display"
             style={{ color: 'var(--ivory)', opacity: 0.85, fontSize: '1.5rem', marginTop: '1rem', maxWidth: '22ch', fontStyle: 'italic' }}

@@ -32,7 +32,10 @@ export default function Nav() {
         aria-label="Rajdeep Jewellers — top"
       >
         <img src="/images/rj-logo.png" alt="" className="nav__logo-img" />
-        <span className="mark" style={{ fontSize: '1.5rem' }}>{brand.name}</span>
+        <span className="nav__wordmark">
+          <span className="mark" style={{ fontSize: '1.5rem' }}>{brand.name}</span>
+          <span className="nav__wordmark-sub">Jewellers</span>
+        </span>
       </button>
 
       <button className="nav__toggle" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">
